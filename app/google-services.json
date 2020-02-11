@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "640986971670",
+    "firebase_url": "https://madagasyexams.firebaseio.com",
+    "project_id": "madagasyexams",
+    "storage_bucket": "madagasyexams.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640986971670:android:d3cb208c554dbcd2",
+        "android_client_info": {
+          "package_name": "com.a33y.jo.madgasyexams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640986971670-4i4eo9eodf9ffh6vcsh4b8nahaqedrbk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.a33y.jo.madgasyexams",
+            "certificate_hash": "f9a7baf9db51d5276e8af8ff9b77af3f619877b8"
+          }
+        },
+        {
+          "client_id": "640986971670-ugsk204jdq967hv5m9qdrfqcha0c6p1c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWasvrY08r9zVWUmLF6X5C8vrqy1z7pdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640986971670-ugsk204jdq967hv5m9qdrfqcha0c6p1c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

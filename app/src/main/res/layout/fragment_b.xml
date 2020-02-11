@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.a33y.jo.madgasyexams.MainActivity"
+    android:padding="5dp"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sujet Proposes"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choisis ton option"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttonback2"
+            android:text="Terminale"
+            android:id="@+id/term"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttonback2"
+            android:text="10ème"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:id="@+id/eme"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
