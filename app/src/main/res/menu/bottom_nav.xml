@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="BAAC"
+        android:id="@+id/baac"
+        android:icon="@drawable/baac_icon"
+        />
+    <item android:title="BEPC"
+        android:id="@+id/bepc2"
+        android:icon="@drawable/baac_icon"/>
+    <item android:title="About"
+        android:id="@+id/about2"
+        android:icon="@drawable/about_ic"/>
+
+</menu>

@@ -1,5 +1,7 @@
 package com.a33y.jo.madgasyexams;
 
+import android.os.Parcelable;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,9 +12,18 @@ import java.util.List;
  */
 
 public class Subject implements Serializable {
-    String title;
-    List<File> files = new ArrayList<>();
-    List<String> fileNames = new ArrayList<>();
+    private String title;
+    private int iconRes = R.drawable.ic_cat;
+    private List<File> files = new ArrayList<>();
+    private List<CustomFiles> fileNames = new ArrayList<>();
+
+    public int getIconRes() {
+        return iconRes;
+    }
+
+    public void setIconRes(int iconRes) {
+        this.iconRes = iconRes;
+    }
 
     public List<String> getFileNames_ans() {
         return fileNames_ans;
@@ -24,24 +35,15 @@ public class Subject implements Serializable {
 
     List<String> fileNames_ans = new ArrayList<>();
 
-    public Subject(String title, List<String> fileNames, List<String> fileNames_ans) {
-        this.title = title;
-        this.fileNames = fileNames;
-        this.fileNames_ans = fileNames_ans;
-    }
-    public Subject(String title, List<String> fileNames) {
-        this.title = title;
-        this.fileNames = fileNames;
 
-    }
     public Subject() {
     }
 
-    public List<String> getFileNames() {
+    public List<CustomFiles> getFileNames() {
         return fileNames;
     }
 
-    public void setFileNames(List<String> fileNames) {
+    public void setFileNames(List<CustomFiles> fileNames) {
         this.fileNames = fileNames;
     }
 

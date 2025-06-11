@@ -2,8 +2,10 @@ package com.a33y.jo.madgasyexams;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,6 +24,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -29,98 +32,70 @@ import java.util.Map;
  */
 
 public class DataHelper {
-    private static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static DatabaseReference myref ;
     private static StorageReference mStorageRef;
     private static SharedPreferences firstTime;
-    private static DataChangedListener dataChangedListener;
     public static int STORAGE_WRITE_PERMISSION =111;
     public static int num =0;
     public static String Token;
-    public static void setDataChangedListener(DataChangedListener dataChangedListener) {
-        DataHelper.dataChangedListener = dataChangedListener;
+    private static final HashMap<String,Integer> iconMap = new HashMap<String, Integer>(){
+        {put("Mathematique",R.drawable.math);}
+        {put("Francais",R.drawable.frs);}
+        {put("Anglais",R.drawable.anglais);}
+        {put("Allemand",R.drawable.anglais);}
+        {put("Espagnol",R.drawable.anglais);}
+        {put("Histoire - Géographie",R.drawable.histo_geo);}
+        {put("Malagasy",R.drawable.mlg);}
+        {put("Physique Chime",R.drawable.physic);}
+        {put("Philosophie",R.drawable.philo);}
+        {put("SVT",R.drawable.science);}
+        {put("EPS",R.drawable.eps);}
+
+    };
+    private static List<Object> assign_icon(List<Object> terms){
+        try {
+            for (Object t : terms) {
+                for (Subject s : ((Term) t).subjects)
+                    if (iconMap.containsKey(s.getTitle())) {
+                        s.setIconRes(iconMap.get(s.getTitle()));
+                    }
+            }
+
+        }catch (Exception e){
+            for(Object s:terms){
+                if(iconMap.containsKey(((Subject)s).getTitle())){
+                    ((Subject)s).setIconRes(iconMap.get(((Subject)s).getTitle()));
+                }
+            }
+        }
+        return terms;
     }
 
-    public static void getData(final Context c){
-        firstTime = c.getSharedPreferences("FirstTime",c.MODE_PRIVATE);
-        myref = database.getReference("Bac");
+    public static void getData(final Context c, DataChangedListener dataChangedListener){
+        firstTime = c.getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
+        myref = database.getReference("Test").child("Bac");
         myref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<HashMap<String, Term>> terms = new GenericTypeIndicator<HashMap<String, Term>>(){};
                 Map<String, Term> TermsMap = new HashMap<>();
                 TermsMap = dataSnapshot.getValue(terms);
-                List<Term> termsList = new ArrayList<>(TermsMap.values());
-                num = termsList.size();
+                List<Object> termsList = new ArrayList<>(TermsMap.values());
+                for(Object term: termsList)
+                for(Object subject :((Term)term).subjects){
 
-                    for (Term s : termsList) {
-
-
-
-
+                    for(CustomFiles file : ((Subject)subject).getFileNames()) {
+                        DownloadFile(((Subject)subject),file.getFileName(),false,c);
+                        DownloadFile(((Subject)subject),file.getFileNameAns(),false,c);
                     }
 
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-    public static void getNewData(final Context c){
-
-        myref = database.getReference("Bac");
-
-        myref.keepSynced(true);
-        DataList.getTermss().clear();
-
-        myref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                final Term term = dataSnapshot.getValue(Term.class);
-                term.setKey(dataSnapshot.getKey());
-
-                 DataList.getTermss().add(term);
-                 for(Subject subject :term.getSubjects()){
-                     int i=0;
-                     if(subject.getFileNames()==null)
-                         break;
-                     for(String string : subject.getFileNames()) {
-                         DownloadFile(subject,i,false,c);
-                         i++;
-                     }
-                     i=0;
-                     if(subject.getFileNames_ans()==null)
-                         break;
-                     for(String string : subject.getFileNames_ans()) {
-                         DownloadFile(subject,i,true,c);
-                         i++;
-                     }
-                 }
+                }
+                DataList.setBac(assign_icon(termsList));
                 if(dataChangedListener!=null)
                     dataChangedListener.onDataAdded();
-
-
-                //adapter.notifyItemInserted(0);
-
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                myref.removeEventListener(this);
 
             }
 
@@ -129,16 +104,45 @@ public class DataHelper {
 
             }
         });
+        /*myref = database.getReference("Test").child("Bepc");
+        myref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<List<Subject>> bepc = new GenericTypeIndicator<List<Subject>>(){};
+                List<Subject> slist= new ArrayList<>();
+                slist = dataSnapshot.child("subjects").getValue(bepc);
+                List<Object> termsList = new ArrayList<>(slist);
 
+                for(Object subject :termsList){
+
+                    for(CustomFiles file : ((Subject)subject).getFileNames()) {
+                        DownloadFile(((Subject)subject),file.getFileName(),false,c);
+                        DownloadFile(((Subject)subject),file.getFileNameAns(),false,c);
+                    }
+
+                }
+                DataList.setBepc(assign_icon(termsList));
+                if(dataChangedListener!=null)
+                    dataChangedListener.onDataAdded();
+                myref.removeEventListener(this);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
     }
 
-    private static void DownloadFile(final Subject subject,int pos,boolean isAns, Context context){
+    private static void DownloadFile(final Subject subject,String name,boolean isAns, Context context){
 
       /* FirebaseStorage.getInstance().setMaxDownloadRetryTimeMillis(2000);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();*/
-
-        final File file = new File(context.getFilesDir(), isAns?subject.getFileNames_ans().get(pos): subject.getFileNames().get(pos));
+        if(name.equals(""))
+            return;
+        final File file = new File(context.getFilesDir(), name);
         if(!file.exists()) {
 
 
@@ -172,13 +176,13 @@ public class DataHelper {
         }
 
     }
-    public static void DownloadRemFile(final Subject subject, final int pos, final boolean isAns, final Context context, final LinearLayout loading){
+    public static void DownloadRemFile(final Subject subject,String name, final boolean isAns, final Context context, final LinearLayout loading,DataChangedListener dataChangedListener){
 
-        final File file = new File(context.getFilesDir(), isAns?subject.getFileNames_ans().get(pos):subject.getFileNames().get(pos));
+        final File file = new File(context.getFilesDir(), name);
         FirebaseStorage.getInstance().setMaxDownloadRetryTimeMillis(2000);
         mStorageRef = FirebaseStorage.getInstance().getReference();
         if(!file.exists()) {
-            String s = isAns?subject.getFileNames_ans().get(pos):subject.getFileNames().get(pos);
+            String s = name;
             StorageReference Songsref = mStorageRef.child(s);
             Songsref.getFile(file)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -186,12 +190,10 @@ public class DataHelper {
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             // Successfully downloaded data to local file
                             // ...
-                            for(Term t : DataList.getTermss())
-                                for(Subject sub : t.getSubjects())
-                                    for(String string : isAns?subject.getFileNames_ans():subject.getFileNames())
-                                        if(string.equals(isAns?subject.getFileNames_ans().get(pos):subject.getFileNames().get(pos)))
-                                            sub.getFiles().add(file);
+
                             subject.getFiles().add(file);
+
+
                            int filepos = subject.getFiles().indexOf(file);
                             if( dataChangedListener!=null)
                                 dataChangedListener.onFileDownloaded(filepos,loading);
@@ -203,11 +205,15 @@ public class DataHelper {
                     // Handle failed download
                     // ...
                     if(dataChangedListener!=null)
-                        dataChangedListener.onFileDownloadedfailed();
+                        dataChangedListener.onFileDownloadedfailed(isAns);
                 }
             });
 
+        }else {
+            if(dataChangedListener!=null)
+                dataChangedListener.onFileDownloadedfailed(isAns);
         }
+
     }
    /* public static void DeleteFile(final Term song, Context context){
         final File file = new File(context.getFilesDir(), song.getFileName()+".mp3");
@@ -219,7 +225,7 @@ public class DataHelper {
    */ public interface DataChangedListener {
         void onDataAdded();
         void onFileDownloaded(int pos,LinearLayout loading);
-        void onFileDownloadedfailed();
+        void onFileDownloadedfailed(boolean isAns);
     }
 
 }

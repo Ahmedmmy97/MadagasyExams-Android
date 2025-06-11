@@ -1,16 +1,11 @@
 <resources>
     <string name="app_name">MADAGASY EXAMS</string>
-    <string name="bac">BACC</string>
-    <string name="banner_ad_unit_id"></string>
+    <string name="test_ad">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_id">ca-app-pub-7038787403547669/2042683215</string>
+    <string name="banner_sujet">ca-app-pub-7038787403547669/7542175729</string>
+    <string name="banner_bepc">ca-app-pub-7038787403547669/2793886705</string>
+    <string name="banner_files">ca-app-pub-7038787403547669/9359295055</string>
+
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_subjects">subjects</string>
-    <string name="interstitial_ad_unit_id"></string>
-    <string name="draweropen">Drawer Opened</string>
-    <string name="admob_app_id"></string>
-    <string name="drawerclose">Drawer Closed</string>
-    <string name="link1"><a>http://www.omnicours.com/dossiers-pedagogiques/comment-choisir-son-orientation-scolaire</a></string>
-    <string name="link2"><a>http://www.reussir-examens-concours.com/5-conseils-pour-reussir-ses-etudes</a></string>
-    <string name="link3"><a>https://diplomeo.com/etablissements-universite</a></string>
-    <string name="link4"><a>http://www.senegal.campusfrance.org/page/conseil-et-orientation-pour-construire-son-projet-detude</a></string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/baac">
+
+    <fragment
+        android:id="@+id/baac"
+        android:name="com.a33y.jo.madgasyexams.baac"
+        android:label="fragment_baac"
+        tools:layout="@layout/fragment_baac" >
+        <action
+            android:id="@+id/subjects_action"
+            app:destination="@id/subjects"
+            app:popUpTo="@id/baac" />
+    </fragment>
+    <fragment
+        android:id="@+id/bepc2"
+        android:name="com.a33y.jo.madgasyexams.bepc"
+        android:label="fragment_bepc"
+        tools:layout="@layout/fragment_bepc" >
+        <action
+            android:id="@+id/bepc_subject_files_action"
+            app:destination="@id/files" />
+    </fragment>
+    <fragment
+        android:id="@+id/about2"
+        android:name="com.a33y.jo.madgasyexams.about"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/subjects"
+        android:name="com.a33y.jo.madgasyexams.Subjects"
+        android:label="fragment_subjects"
+        tools:layout="@layout/fragment_subjects" >
+        <action
+            android:id="@+id/subject_files_action"
+            app:destination="@id/files" />
+    </fragment>
+    <fragment
+        android:id="@+id/files"
+        android:name="com.a33y.jo.madgasyexams.files"
+        android:label="fragment_files"
+        tools:layout="@layout/fragment_files" />
+</navigation>
