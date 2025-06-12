@@ -28,7 +28,7 @@
                 android:textSize="45sp"
                 android:gravity="center"
                 android:padding="10dp"/>
-            <com.a33y.jo.madgasyexams.CustomGridView
+            <com.a33y.jo.madgasyexams.views.CustomGridView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -36,7 +36,7 @@
                 android:listSelector="@android:color/transparent"
                 >
 
-            </com.a33y.jo.madgasyexams.CustomGridView>
+            </com.a33y.jo.madgasyexams.views.CustomGridView>
 
 
         </LinearLayout>

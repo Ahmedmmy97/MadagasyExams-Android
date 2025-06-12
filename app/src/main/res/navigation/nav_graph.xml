@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/baac"
-        android:name="com.a33y.jo.madgasyexams.baac"
+        android:name="com.a33y.jo.madgasyexams.fragments.baac"
         android:label="fragment_baac"
         tools:layout="@layout/fragment_baac" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/bepc2"
-        android:name="com.a33y.jo.madgasyexams.bepc"
+        android:name="com.a33y.jo.madgasyexams.fragments.bepc"
         android:label="fragment_bepc"
         tools:layout="@layout/fragment_bepc" >
         <action
@@ -25,12 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/about2"
-        android:name="com.a33y.jo.madgasyexams.about"
+        android:name="com.a33y.jo.madgasyexams.fragments.about"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/subjects"
-        android:name="com.a33y.jo.madgasyexams.Subjects"
+        android:name="com.a33y.jo.madgasyexams.fragments.Subjects"
         android:label="fragment_subjects"
         tools:layout="@layout/fragment_subjects" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/files"
-        android:name="com.a33y.jo.madgasyexams.files"
+        android:name="com.a33y.jo.madgasyexams.fragments.files"
         android:label="fragment_files"
         tools:layout="@layout/fragment_files" />
 </navigation>

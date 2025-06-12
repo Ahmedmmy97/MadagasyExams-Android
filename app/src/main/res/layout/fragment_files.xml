@@ -31,13 +31,13 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:id="@+id/cat"/>
-            <com.a33y.jo.madgasyexams.CustomRecyclerView
+            <com.a33y.jo.madgasyexams.views.CustomRecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
 
-            </com.a33y.jo.madgasyexams.CustomRecyclerView>
+            </com.a33y.jo.madgasyexams.views.CustomRecyclerView>
 
 
         </LinearLayout>
